@@ -7,31 +7,35 @@ import { GlassCard } from '@/components/ui/GlassCard';
 
 const stats = [
   { value: '2020', label: 'Year Established' },
-  { value: '120+', label: 'Luxury Rooms' },
-  { value: '5★', label: 'Star Rating' },
-  { value: '50+', label: 'Awards Won' },
+  { value: '119', label: 'Rooms & Suites' },
+  { value: '3★', label: 'Star Rating' },
+  { value: '7.5', label: 'Guest Rating' },
 ];
 
 const features = [
   {
-    title: 'Architectural Marvel',
-    description: 'A masterpiece of contemporary African design, blending local artistry with international luxury standards.',
+    title: 'Prime Location',
+    description: 'Located in the heart of Gombe, Kinshasa\'s diplomatic and business district, steps from the Botanic Garden and Central Market.',
     icon: '🏛️',
+    image: '/images/lobby/lobby-1.jpg',
   },
   {
-    title: 'World-Class Dining',
-    description: 'Three distinct restaurants offering culinary journeys from Congolese traditions to international fine dining.',
+    title: 'Dining & Bar',
+    description: 'Enjoy Indian and international cuisine at our restaurant, complimentary buffet breakfast, and refreshing cocktails at the bar.',
     icon: '🍽️',
+    image: '/images/restaurant/dining-1.jpg',
   },
   {
-    title: 'Wellness Sanctuary',
-    description: 'A 2,000 sqm spa featuring treatments inspired by African healing traditions and modern wellness science.',
+    title: 'Pool & Garden',
+    description: 'Relax at our outdoor swimming pool with waterslide, surrounded by a lush garden oasis in the city.',
     icon: '🧖',
+    image: '/images/pool/pool-1.jpg',
   },
   {
-    title: 'Exclusive Experiences',
-    description: 'From private Congo River cruises to curated city tours, every moment is designed to create lasting memories.',
+    title: 'Business & Events',
+    description: 'Full conference center, meeting rooms, and banquet hall for corporate events, weddings, and celebrations.',
     icon: '✨',
+    image: '/images/restaurant/terrace-1.jpg',
   },
 ];
 
@@ -69,8 +73,11 @@ export function AboutSection() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/images/about.jpg')] bg-cover bg-center" />
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: 'url(/images/exterior/exterior-1.jpg)' }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
             {/* Floating Card */}
@@ -132,16 +139,23 @@ export function AboutSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
             >
-              <GlassCard className="h-full group cursor-pointer" hover>
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-500">
-                  {feature.icon}
+              <GlassCard className="h-full group cursor-pointer overflow-hidden" hover padding="none">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${feature.image})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="text-2xl mb-2">{feature.icon}</div>
+                    <h4 className="text-base font-display text-cream mb-1">
+                      {feature.title}
+                    </h4>
+                    <p className="text-xs text-cream/60 font-light leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                <h4 className="text-lg font-display text-cream mb-2">
-                  {feature.title}
-                </h4>
-                <p className="text-sm text-cream/60 font-light leading-relaxed">
-                  {feature.description}
-                </p>
               </GlassCard>
             </motion.div>
           ))}

@@ -8,25 +8,24 @@ import { Button } from '@/components/ui/Button';
 const galleryCategories = ['All', 'Rooms', 'Restaurant', 'Spa', 'Pool', 'Events'];
 
 const galleryItems = [
-  { id: 1, src: '/images/gallery/lobby.jpg', category: 'All', aspect: 'aspect-[4/3]' },
-  { id: 2, src: '/images/rooms/presidential-1.jpg', category: 'Rooms', aspect: 'aspect-[3/4]' },
-  { id: 3, src: '/images/restaurant/main.jpg', category: 'Restaurant', aspect: 'aspect-square' },
-  { id: 4, src: '/images/spa/entrance.jpg', category: 'Spa', aspect: 'aspect-[4/3]' },
-  { id: 5, src: '/images/pool/night.jpg', category: 'Pool', aspect: 'aspect-[16/9]' },
-  { id: 6, src: '/images/events/gala.jpg', category: 'Events', aspect: 'aspect-[4/3]' },
-  { id: 7, src: '/images/rooms/suite-2.jpg', category: 'Rooms', aspect: 'aspect-square' },
-  { id: 8, src: '/images/restaurant/bar.jpg', category: 'Restaurant', aspect: 'aspect-[3/4]' },
-  { id: 9, src: '/images/spa/treatment.jpg', category: 'Spa', aspect: 'aspect-[4/3]' },
-  { id: 10, src: '/images/pool/day.jpg', category: 'Pool', aspect: 'aspect-[16/9]' },
-  { id: 11, src: '/images/events/boardroom.jpg', category: 'Events', aspect: 'aspect-[4/3]' },
-  { id: 12, src: '/images/gallery/exterior.jpg', category: 'All', aspect: 'aspect-square' },
+  { id: 1, category: 'All', aspect: 'aspect-[4/3]', image: '/images/lobby/lobby-1.jpg' },
+  { id: 2, category: 'Rooms', aspect: 'aspect-[3/4]', image: '/images/rooms/standard-1.jpg' },
+  { id: 3, category: 'Restaurant', aspect: 'aspect-square', image: '/images/restaurant/dining-1.jpg' },
+  { id: 4, category: 'Spa', aspect: 'aspect-[4/3]', image: '/images/rooms/deluxe-1.jpg' },
+  { id: 5, category: 'Pool', aspect: 'aspect-[16/9]', image: '/images/pool/pool-1.jpg' },
+  { id: 6, category: 'Events', aspect: 'aspect-[4/3]', image: '/images/lobby/lobby-1.jpg' },
+  { id: 7, category: 'Rooms', aspect: 'aspect-square', image: '/images/rooms/executive-1.jpg' },
+  { id: 8, category: 'Restaurant', aspect: 'aspect-[3/4]', image: '/images/restaurant/terrace-1.jpg' },
+  { id: 9, category: 'Spa', aspect: 'aspect-[4/3]', image: '/images/rooms/junior-suite-1.jpg' },
+  { id: 10, category: 'Pool', aspect: 'aspect-[16/9]', image: '/images/pool/pool-1.jpg' },
+  { id: 11, category: 'Events', aspect: 'aspect-[4/3]', image: '/images/restaurant/terrace-1.jpg' },
+  { id: 12, category: 'All', aspect: 'aspect-square', image: '/images/rooms/deluxe-2.jpg' },
 ];
 
 export function GallerySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const [activeCategory, setActiveCategory] = useState('All');
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const filteredItems = activeCategory === 'All'
     ? galleryItems
@@ -73,9 +72,11 @@ export function GallerySection() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4 }}
                 className={`${item.aspect} relative rounded-xl overflow-hidden cursor-pointer group`}
-                onClick={() => setSelectedImage(item.src)}
               >
-                <div className="absolute inset-0 bg-[url('/images/gallery/lobby.jpg')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" />
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${item.image})` }}
+                />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500" />
                 
                 {/* Hover Overlay */}
@@ -90,35 +91,6 @@ export function GallerySection() {
             ))}
           </AnimatePresence>
         </motion.div>
-
-        {/* Lightbox */}
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl p-4"
-              onClick={() => setSelectedImage(null)}
-            >
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                className="relative max-w-5xl w-full aspect-[16/10] rounded-2xl overflow-hidden"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="absolute inset-0 bg-[url('/images/gallery/lobby.jpg')] bg-cover bg-center" />
-                <button
-                  onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                >
-                  ✕
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* View All Button */}
         <div className="text-center mt-12">

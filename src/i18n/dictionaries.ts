@@ -134,7 +134,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       amenities: 'Équipements',
     },
     restaurant: {
-      title: Gastronomie,
+      title: 'Gastronomie',
       subtitle: 'Un Voyage Culinaire à Travers les Saveurs',
       menu: 'Notre Menu',
       reservations: 'Faire une Réservation',

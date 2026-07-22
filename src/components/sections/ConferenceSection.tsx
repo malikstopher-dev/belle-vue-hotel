@@ -32,7 +32,10 @@ export function ConferenceSection() {
           transition={{ duration: 0.8 }}
           className="relative aspect-[21/9] rounded-2xl overflow-hidden mb-12"
         >
-          <div className="absolute inset-0 bg-[url('/images/conference.jpg')] bg-cover bg-center" />
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: 'url(/images/lobby/lobby-1.jpg)' }}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           
           <div className="absolute inset-0 flex items-center">

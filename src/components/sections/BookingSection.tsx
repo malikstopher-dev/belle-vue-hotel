@@ -27,7 +27,7 @@ export function BookingSection() {
     <section id="booking" ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-dark overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('/images/booking-bg.jpg')] bg-cover bg-center opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-luxury-charcoal via-luxury-gray to-luxury-dark opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-dark via-luxury-dark/95 to-luxury-dark" />
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
       </div>

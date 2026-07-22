@@ -94,7 +94,10 @@ export function PoolSection() {
             className="relative"
           >
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/images/pool.jpg')] bg-cover bg-center" />
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: 'url(/images/pool/pool-1.jpg)' }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-luxury-dark/60 to-transparent" />
               
               {/* Animated Reflection */}

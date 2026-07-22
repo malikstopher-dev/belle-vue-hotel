@@ -103,7 +103,7 @@ export function Footer() {
             </h3>
             <ul className="space-y-3">
               {footerLinks.hotel.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-luxury-silver hover:text-gold-500 transition-colors duration-300"
@@ -122,7 +122,7 @@ export function Footer() {
             </h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-luxury-silver hover:text-gold-500 transition-colors duration-300"

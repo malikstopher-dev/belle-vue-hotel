@@ -58,6 +58,10 @@ export function SpaSection() {
             transition={{ duration: 1 }}
             className="relative aspect-square max-w-lg mx-auto"
           >
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+              style={{ backgroundImage: 'url(/images/lobby/lobby-1.jpg)' }}
+            />
             {/* Floating Stones */}
             {[
               { x: '30%', y: '20%', size: 120, delay: 0 },
@@ -143,7 +147,7 @@ export function SpaSection() {
                 padding="none"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <div className="absolute inset-0 bg-[url('/images/spa/stone-massage.jpg')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-luxury-charcoal via-luxury-gray to-luxury-dark transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   
                   <div className="absolute top-4 right-4 glass-card px-3 py-1">

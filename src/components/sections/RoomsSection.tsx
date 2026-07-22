@@ -57,7 +57,10 @@ export function RoomsSection() {
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               {/* Room Image */}
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group">
-                <div className="absolute inset-0 bg-[url('/images/rooms/premium-1.jpg')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" />
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${rooms[activeRoom].images[0]})` }}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 
                 {/* Floating Price */}
@@ -142,7 +145,10 @@ export function RoomsSection() {
                 padding="none"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <div className="absolute inset-0 bg-[url('/images/rooms/premium-1.jpg')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" />
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${room.images[0]})` }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   
                   {room.featured && (

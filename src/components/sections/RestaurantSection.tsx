@@ -18,7 +18,7 @@ export function RestaurantSection() {
     <section id="restaurant" ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-dark overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/restaurant-bg.jpg')] bg-cover bg-center opacity-20" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-luxury-charcoal via-luxury-gray to-luxury-dark opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-dark via-luxury-dark/95 to-luxury-dark" />
       </div>
 
@@ -37,7 +37,10 @@ export function RestaurantSection() {
           className="grid lg:grid-cols-2 gap-8 md:gap-12 mb-16 md:mb-20"
         >
           <div className="relative aspect-[4/3] lg:aspect-[3/4] rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/images/restaurant/chef.jpg')] bg-cover bg-center" />
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: 'url(/images/restaurant/dining-1.jpg)' }}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
               <div className="text-gold-500 text-sm tracking-wider uppercase mb-2">Executive Chef</div>

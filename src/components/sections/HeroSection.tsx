@@ -39,7 +39,10 @@ export function HeroSection() {
           style={{ y: y1, scale }}
           className="absolute inset-0"
         >
-          <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center bg-no-repeat" />
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: 'url(/images/exterior/exterior-1.jpg)' }}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/90" />
         </motion.div>
 
@@ -51,26 +54,22 @@ export function HeroSection() {
 
         {/* Floating Particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-gold-500/30 rounded-full"
-              initial={{
-                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1920),
-                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080),
-              }}
-              animate={{
-                y: [null, -1000],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 10 + Math.random() * 20,
-                repeat: Infinity,
-                delay: Math.random() * 10,
-                ease: 'linear',
-              }}
-            />
-          ))}
+          {[...Array(20)].map((_, i) => {
+            const seed = i * 137.5;
+            const px = ((seed * 7.3) % 1920);
+            const py = ((seed * 11.1) % 1080);
+            const dur = 10 + (seed % 20);
+            const del = seed % 10;
+            return (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-gold-500/30 rounded-full"
+                initial={{ x: px, y: py }}
+                animate={{ y: [null, -1000], opacity: [0, 1, 0] }}
+                transition={{ duration: dur, repeat: Infinity, delay: del, ease: 'linear' }}
+              />
+            );
+          })}
         </div>
 
         {/* Lens Flare Effect */}
@@ -95,7 +94,7 @@ export function HeroSection() {
       {/* Content */}
       <motion.div
         style={{ opacity, y: y2 }}
-        className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8"
+        className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-24"
       >
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}

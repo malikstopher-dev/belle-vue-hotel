@@ -36,7 +36,10 @@ export function ExperiencesSection() {
             >
               <GlassCard className="h-full group cursor-pointer" hover padding="none">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <div className="absolute inset-0 bg-[url('/images/experiences/transfer.jpg')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" />
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${experience.image})` }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   
                   {/* Duration Badge */}
