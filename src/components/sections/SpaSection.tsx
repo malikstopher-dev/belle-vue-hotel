@@ -56,7 +56,7 @@ export function SpaSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1 }}
-            className="relative aspect-square max-w-lg mx-auto"
+            className="relative aspect-square max-w-sm md:max-w-lg mx-auto"
           >
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"

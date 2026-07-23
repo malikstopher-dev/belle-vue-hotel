@@ -83,7 +83,7 @@ export function AboutSection() {
             {/* Floating Card */}
             <motion.div
               style={{ y }}
-              className="absolute -bottom-8 -right-4 md:right-8 glass-card p-6 max-w-[280px]"
+              className="hidden md:block absolute -bottom-8 -right-4 md:right-8 glass-card p-6 max-w-[280px]"
             >
               <div className="text-4xl font-display text-gold-500 mb-2">5+</div>
               <div className="text-sm text-cream/70">Years of excellence in luxury hospitality, creating unforgettable experiences for discerning travelers.</div>

@@ -18,10 +18,10 @@ interface NavbarProps {
 
 const navItems: NavItem[] = [
   { label: 'About', href: '#about' },
-  { label: 'Rooms', href: '#rooms' },
-  { label: 'Dining', href: '#restaurant' },
-  { label: 'Spa', href: '#spa' },
-  { label: 'Gallery', href: '#gallery' },
+  { label: 'Rooms', href: '/rooms' },
+  { label: 'Dining', href: '/dining' },
+  { label: 'Spa', href: '/spa' },
+  { label: 'Gallery', href: '/gallery' },
   { label: 'Contact', href: '#contact' },
 ];
 

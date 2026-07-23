@@ -1,0 +1,37 @@
+declare module 'lucide-react' {
+  import { FC, SVGProps } from 'react';
+  export const ArrowLeft: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const ChevronDown: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Clock: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const MapPin: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Phone: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Star: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Utensils: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Wine: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const ArrowRight: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const X: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const ChevronLeft: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const ChevronRight: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Instagram: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Leaf: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Sparkles: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Heart: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Sun: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Droplets: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Wind: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Shield: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Wifi: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Tv: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Car: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Coffee: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Bed: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Bath: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Check: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Camera: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Play: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const ArrowUp: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Menu: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Home: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Mail: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+  export const Globe: FC<SVGProps<SVGSVGElement> & { size?: number }>;
+}

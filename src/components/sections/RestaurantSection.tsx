@@ -129,30 +129,39 @@ export function RestaurantSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <GlassCard className="h-full group cursor-pointer" hover>
-                    <div className="flex items-start justify-between mb-4">
-                      <h4 className="text-lg font-display text-cream group-hover:text-gold-500 transition-colors">
-                        {item.name}
-                      </h4>
-                      <span className="text-lg font-display text-gold-500 ml-4">
-                        ${item.price}
-                      </span>
-                    </div>
-                    <p className="text-sm text-cream/60 mb-4">
-                      {item.description}
-                    </p>
-                    {item.dietary.length > 0 && (
-                      <div className="flex gap-2">
-                        {item.dietary.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-0.5 text-[10px] rounded-full bg-gold-500/10 text-gold-500 border border-gold-500/20"
-                          >
-                            {tag === 'VG' ? 'Vegetarian' : tag === 'GF' ? 'Gluten Free' : tag}
+                  <GlassCard className="h-full group cursor-pointer overflow-hidden" hover padding="none">
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                        style={{ backgroundImage: `url(${item.image})` }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <div className="flex items-start justify-between mb-2">
+                          <h4 className="text-lg font-display text-cream group-hover:text-gold-500 transition-colors">
+                            {item.name}
+                          </h4>
+                          <span className="text-lg font-display text-gold-500 ml-4">
+                            ${item.price}
                           </span>
-                        ))}
+                        </div>
+                        <p className="text-sm text-cream/60 mb-3">
+                          {item.description}
+                        </p>
+                        {item.dietary.length > 0 && (
+                          <div className="flex gap-2">
+                            {item.dietary.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2 py-0.5 text-[10px] rounded-full bg-gold-500/10 text-gold-500 border border-gold-500/20"
+                              >
+                                {tag === 'VG' ? 'Vegetarian' : tag === 'GF' ? 'Gluten Free' : tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
                   </GlassCard>
                 </motion.div>
               ))}
