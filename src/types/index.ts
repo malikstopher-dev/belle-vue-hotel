@@ -147,20 +147,43 @@ export interface Dictionary {
     subtitle: string;
     cta: string;
     ctaSecondary: string;
+    badge: string;
+    scroll: string;
   };
   about: {
     title: string;
     subtitle: string;
+    badge: string;
     description: string;
+    description2: string;
+    stats: {
+      year: string;
+      rooms: string;
+      rating: string;
+      guest: string;
+    };
+    features: {
+      location: string;
+      locationDesc: string;
+      dining: string;
+      diningDesc: string;
+      pool: string;
+      poolDesc: string;
+      events: string;
+      eventsDesc: string;
+    };
   };
   rooms: {
     title: string;
     subtitle: string;
+    badge: string;
     viewAll: string;
     bookNow: string;
     perNight: string;
     guests: string;
     amenities: string;
+    featured: string;
+    viewGallery: string;
   };
   restaurant: {
     title: string;
@@ -199,10 +222,26 @@ export interface Dictionary {
   contact: {
     title: string;
     subtitle: string;
+    badge: string;
     address: string;
     phone: string;
     email: string;
     send: string;
+    addressLabel: string;
+    phoneLabel: string;
+    emailLabel: string;
+    whatsapp: string;
+    fastest: string;
+    letsTalk: string;
+    letsTalkDesc: string;
+    nameLabel: string;
+    emailFieldLabel: string;
+    subjectLabel: string;
+    messageLabel: string;
+    namePlaceholder: string;
+    emailPlaceholder: string;
+    subjectPlaceholder: string;
+    messagePlaceholder: string;
   };
   booking: {
     title: string;
@@ -222,5 +261,10 @@ export interface Dictionary {
     newsletter: string;
     subscribe: string;
     emailPlaceholder: string;
+    hotel: string;
+    services: string;
+    newsletterDesc: string;
+    privacy: string;
+    terms: string;
   };
 }

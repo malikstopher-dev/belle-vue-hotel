@@ -11,7 +11,7 @@ import { useLocale } from '@/context/LocaleContext';
 export function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const { t, locale } = useLocale();
+  const { t } = useLocale();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,20 +21,17 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle contact form submission
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-black overflow-hidden">
-      {/* Background */}
+    <section id="contact" ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-dark overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-500/3 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-luxury-accent/3 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gold-500/5 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          badge={locale === 'fr' ? 'Contactez-nous' : 'Get in Touch'}
+          badge={t('contact.badge')}
           title={t('contact.title')}
           subtitle={t('contact.subtitle')}
         />
@@ -47,10 +44,10 @@ export function ContactSection() {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-2xl font-display text-cream mb-6">
-              Let&apos;s Create Something Beautiful
+              {t('contact.letsTalk')}
             </h3>
             <p className="text-cream/70 font-light leading-relaxed mb-8">
-              Whether you&apos;re planning a stay, an event, or simply have a question, our team is here to help. Reach out and let us make your vision a reality.
+              {t('contact.letsTalkDesc')}
             </p>
 
             <div className="space-y-6">
@@ -63,7 +60,7 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-medium text-cream mb-1">Address</h4>
+                  <h4 className="font-medium text-cream mb-1">{t('contact.addressLabel')}</h4>
                   <p className="text-sm text-cream/60">{siteConfig.contact.address}</p>
                 </div>
               </div>
@@ -76,9 +73,9 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-medium text-cream mb-1">Phone</h4>
+                  <h4 className="font-medium text-cream mb-1">{t('contact.phoneLabel')}</h4>
                   <p className="text-sm text-cream/60">{siteConfig.contact.phone}</p>
-                  <p className="text-xs text-gold-500/70 mt-1">Reservations: {siteConfig.contact.phoneReservations}</p>
+                  <p className="text-xs text-gold-500/70 mt-1">{siteConfig.contact.phoneReservations}</p>
                 </div>
               </div>
 
@@ -90,7 +87,7 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-medium text-cream mb-1">Email</h4>
+                  <h4 className="font-medium text-cream mb-1">{t('contact.emailLabel')}</h4>
                   <p className="text-sm text-cream/60">{siteConfig.contact.email}</p>
                 </div>
               </div>
@@ -103,9 +100,9 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-medium text-cream mb-1">WhatsApp</h4>
+                  <h4 className="font-medium text-cream mb-1">{t('contact.whatsapp')}</h4>
                   <p className="text-sm text-cream/60">+243 815 443 636</p>
-                  <p className="text-xs text-gold-500/70 mt-1">Fastest response time</p>
+                  <p className="text-xs text-gold-500/70 mt-1">{t('contact.fastest')}</p>
                 </div>
               </div>
             </div>
@@ -122,25 +119,25 @@ export function ContactSection() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs text-gold-500 tracking-wider uppercase mb-2">
-                      Your Name
+                      {t('contact.nameLabel')}
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="John Doe"
+                      placeholder={t('contact.namePlaceholder')}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-cream placeholder:text-cream/30 focus:outline-none focus:border-gold-500/50 transition-colors"
                     />
                   </div>
                   <div>
                     <label className="block text-xs text-gold-500 tracking-wider uppercase mb-2">
-                      Email
+                      {t('contact.emailFieldLabel')}
                     </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="john@example.com"
+                      placeholder={t('contact.emailPlaceholder')}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-cream placeholder:text-cream/30 focus:outline-none focus:border-gold-500/50 transition-colors"
                     />
                   </div>
@@ -148,32 +145,32 @@ export function ContactSection() {
 
                 <div>
                   <label className="block text-xs text-gold-500 tracking-wider uppercase mb-2">
-                    Subject
+                    {t('contact.subjectLabel')}
                   </label>
                   <input
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="How can we help?"
+                    placeholder={t('contact.subjectPlaceholder')}
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-cream placeholder:text-cream/30 focus:outline-none focus:border-gold-500/50 transition-colors"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs text-gold-500 tracking-wider uppercase mb-2">
-                    Message
+                    {t('contact.messageLabel')}
                   </label>
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={5}
-                    placeholder="Tell us about your inquiry..."
+                    placeholder={t('contact.messagePlaceholder')}
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-cream placeholder:text-cream/30 focus:outline-none focus:border-gold-500/50 transition-colors resize-none"
                   />
                 </div>
 
                 <Button type="submit" size="lg" className="w-full">
-                  Send Message
+                  {t('contact.send')}
                 </Button>
               </form>
             </GlassCard>
