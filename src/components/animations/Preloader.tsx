@@ -38,14 +38,11 @@ export function Preloader() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="mb-8"
             >
-              <div className="relative inline-block">
-                <div className="w-20 h-20 border border-gold-500/50 rotate-45">
-                  <div className="absolute inset-2 border border-gold-500/30" />
-                </div>
-                <span className="absolute inset-0 flex items-center justify-center font-display text-gold-500 text-3xl font-bold">
-                  BV
-                </span>
-              </div>
+              <img
+                src="/images/logo.svg"
+                alt="Hotel Belle Vie"
+                className="h-20 w-auto"
+              />
             </motion.div>
 
             {/* Brand Name */}

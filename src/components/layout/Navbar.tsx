@@ -63,19 +63,17 @@ export function Navbar({ locale = 'en' }: NavbarProps) {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 md:h-24">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                <div className="w-10 h-10 md:w-12 md:h-12 border border-gold-500/50 rotate-45 group-hover:border-gold-500 transition-colors duration-500" />
-                <div className="absolute inset-1 border border-gold-500/30 rotate-45 group-hover:border-gold-500/50 transition-colors duration-500" />
-                <span className="absolute inset-0 flex items-center justify-center font-display text-gold-500 text-lg md:text-xl font-bold -rotate-0">
-                  BV
-                </span>
-              </div>
-              <div className="hidden sm:block">
-                <div className="font-display text-xl md:text-2xl text-cream tracking-wider">
+            <Link href="/" className="flex items-center gap-2 group">
+              <img
+                src="/images/logo.svg"
+                alt="Hotel Belle Vie"
+                className="h-10 md:h-12 w-auto"
+              />
+              <div className="block">
+                <div className="font-display text-sm md:text-lg text-cream tracking-wider leading-tight">
                   {siteConfig.name}
                 </div>
-                <div className="text-[10px] md:text-xs text-gold-500/70 tracking-[0.3em] uppercase">
+                <div className="text-[8px] md:text-[10px] text-gold-500/70 tracking-[0.2em] uppercase">
                   Kinshasa
                 </div>
               </div>

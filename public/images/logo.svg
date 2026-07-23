@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#B8941F"/>
+      <stop offset="30%" style="stop-color:#C9A84C"/>
+      <stop offset="50%" style="stop-color:#D4B96A"/>
+      <stop offset="70%" style="stop-color:#C9A84C"/>
+      <stop offset="100%" style="stop-color:#B8941F"/>
+    </linearGradient>
+  </defs>
+  <!-- H Monogram -->
+  <g transform="translate(140, 15)">
+    <!-- Left vertical stroke -->
+    <rect x="0" y="0" width="14" height="115" fill="url(#gold)"/>
+    <!-- Right vertical stroke -->
+    <rect x="106" y="0" width="14" height="115" fill="url(#gold)"/>
+    <!-- Left serif top -->
+    <rect x="-8" y="0" width="30" height="10" fill="url(#gold)"/>
+    <!-- Left serif bottom -->
+    <rect x="-8" y="105" width="30" height="10" fill="url(#gold)"/>
+    <!-- Right serif top -->
+    <rect x="98" y="0" width="30" height="10" fill="url(#gold)"/>
+    <!-- Right serif bottom -->
+    <rect x="98" y="105" width="30" height="10" fill="url(#gold)"/>
+    <!-- Horizontal bar -->
+    <rect x="0" y="48" width="120" height="14" fill="url(#gold)"/>
+    <!-- Arch -->
+    <path d="M 50 48 Q 60 20 70 48" stroke="url(#gold)" stroke-width="10" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- Text -->
+  <text x="200" y="165" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="400" letter-spacing="12" fill="url(#gold)">HOTEL BELLE VIE</text>
+</svg>

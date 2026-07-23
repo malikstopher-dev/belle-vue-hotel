@@ -544,13 +544,7 @@ export default function RoomsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center gap-3 mb-6 group">
-                <div className="relative">
-                  <div className="w-10 h-10 border border-gold-500/50 rotate-45 group-hover:border-gold-500 transition-colors duration-500" />
-                  <div className="absolute inset-1 border border-gold-500/30 rotate-45 group-hover:border-gold-500/50 transition-colors duration-500" />
-                  <span className="absolute inset-0 flex items-center justify-center font-display text-gold-500 text-lg font-bold">
-                    BV
-                  </span>
-                </div>
+                <img src="/images/logo.svg" alt="Hotel Belle Vie" className="h-10 w-auto" />
                 <div>
                   <div className="font-display text-xl text-luxury-cream tracking-wider">
                     {siteConfig.name}

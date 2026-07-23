@@ -410,9 +410,7 @@ export default function GalleryPage() {
         className="fixed top-6 right-6 z-50 hidden md:block"
       >
         <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/10">
-          <div className="w-6 h-6 border border-gold-500/50 rotate-45 flex items-center justify-center">
-            <span className="text-[8px] text-gold-500 font-display font-bold -rotate-45">BV</span>
-          </div>
+          <img src="/images/logo.svg" alt="BV" className="h-6 w-auto" />
           <span className="text-xs text-cream/60 tracking-widest uppercase">{siteConfig.name}</span>
         </div>
       </motion.div>
@@ -687,13 +685,7 @@ export default function GalleryPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center gap-3 mb-6 group">
-                <div className="relative">
-                  <div className="w-10 h-10 border border-gold-500/50 rotate-45 group-hover:border-gold-500 transition-colors duration-500" />
-                  <div className="absolute inset-1 border border-gold-500/30 rotate-45 group-hover:border-gold-500/50 transition-colors duration-500" />
-                  <span className="absolute inset-0 flex items-center justify-center font-display text-gold-500 text-lg font-bold">
-                    BV
-                  </span>
-                </div>
+                <img src="/images/logo.svg" alt="Hotel Belle Vie" className="h-10 w-auto" />
                 <div>
                   <div className="font-display text-xl text-cream tracking-wider">{siteConfig.name}</div>
                   <div className="text-[10px] text-gold-500/70 tracking-[0.3em] uppercase">Kinshasa</div>
