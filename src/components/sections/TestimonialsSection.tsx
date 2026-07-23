@@ -2,14 +2,15 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { testimonials } from '@/config/data';
 import { getInitials } from '@/lib/utils';
+import { useLocale } from '@/context/LocaleContext';
 
 export function TestimonialsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t, locale } = useLocale();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,22 +19,29 @@ export function TestimonialsSection() {
     return () => clearInterval(interval);
   }, []);
 
+  const getTestimonialText = (testimonial: typeof testimonials[0]) =>
+    locale === 'fr' && testimonial.textFr ? testimonial.textFr :
+    locale === 'pt' && testimonial.textPt ? testimonial.textPt :
+    testimonial.text;
+
   return (
     <section ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-black overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-dark via-luxury-black to-luxury-dark" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/3 rounded-full blur-[200px]" />
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          badge="Guest Reviews"
-          title="What Our Guests Say"
-          subtitle="Moments of Distinction"
-        />
+        <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-gold-500/10 text-gold-500 text-xs tracking-[0.2em] uppercase border border-gold-500/20">
+            {t('testimonials.badge')}
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-cream mb-4">
+            {t('testimonials.title')}
+          </h2>
+          <p className="text-cream/60 max-w-2xl mx-auto">{t('testimonials.subtitle')}</p>
+        </div>
 
-        {/* Featured Testimonial */}
         <div className="relative min-h-[300px] md:min-h-[250px]">
           <AnimatePresence mode="wait">
             <motion.div
@@ -44,17 +52,14 @@ export function TestimonialsSection() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              {/* Quote Icon */}
               <div className="text-6xl md:text-8xl text-gold-500/20 font-display leading-none mb-4">
                 &ldquo;
               </div>
               
-              {/* Text */}
               <p className="text-xl md:text-2xl lg:text-3xl font-display text-cream leading-relaxed mb-8 max-w-3xl mx-auto italic">
-                {testimonials[currentIndex].text}
+                {getTestimonialText(testimonials[currentIndex])}
               </p>
 
-              {/* Author */}
               <div className="flex items-center justify-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-500 font-display">
                   {getInitials(testimonials[currentIndex].name)}
@@ -65,7 +70,6 @@ export function TestimonialsSection() {
                 </div>
               </div>
 
-              {/* Stars */}
               <div className="flex items-center justify-center gap-1 mt-4">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-5 h-5 text-gold-500" fill="currentColor" viewBox="0 0 20 20">
@@ -77,7 +81,6 @@ export function TestimonialsSection() {
           </AnimatePresence>
         </div>
 
-        {/* Navigation Dots */}
         <div className="flex items-center justify-center gap-3 mt-8">
           {testimonials.map((_, i) => (
             <button
@@ -92,7 +95,6 @@ export function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Google Reviews Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -120,7 +122,7 @@ export function TestimonialsSection() {
                   </svg>
                 ))}
               </div>
-              <span className="text-sm text-cream/60">• 247 reviews</span>
+              <span className="text-sm text-cream/60">• 247 {t('testimonials.reviews')}</span>
             </div>
           </div>
         </motion.div>

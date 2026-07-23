@@ -2,32 +2,40 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { restaurantMenu } from '@/config/data';
+import { useLocale } from '@/context/LocaleContext';
 
 export function RestaurantSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const [activeCategory, setActiveCategory] = useState('starters');
+  const { t, locale } = useLocale();
 
   const activeItems = restaurantMenu.find(cat => cat.id === activeCategory)?.items || [];
 
+  const getCatName = (cat: typeof restaurantMenu[0]) => locale === 'fr' && cat.nameFr ? cat.nameFr : locale === 'pt' && cat.namePt ? cat.namePt : cat.name;
+  const getItemName = (item: typeof activeItems[0]) => locale === 'fr' && item.nameFr ? item.nameFr : locale === 'pt' && item.namePt ? item.namePt : item.name;
+  const getItemDesc = (item: typeof activeItems[0]) => locale === 'fr' && item.descriptionFr ? item.descriptionFr : locale === 'pt' && item.descriptionPt ? item.descriptionPt : item.description;
+
   return (
     <section id="restaurant" ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-dark overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-luxury-charcoal via-luxury-gray to-luxury-dark opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-dark via-luxury-dark/95 to-luxury-dark" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          badge="Fine Dining"
-          title="A Culinary Journey"
-          subtitle="Where flavors dance and memories are made"
-        />
+        <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-gold-500/10 text-gold-500 text-xs tracking-[0.2em] uppercase border border-gold-500/20">
+            {t('restaurant.badge')}
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-cream mb-4">
+            {t('restaurant.title')}
+          </h2>
+          <p className="text-cream/60 max-w-2xl mx-auto">{t('restaurant.subtitle')}</p>
+        </div>
 
         {/* Chef Feature */}
         <motion.div
@@ -43,32 +51,32 @@ export function RestaurantSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <div className="text-gold-500 text-sm tracking-wider uppercase mb-2">Executive Chef</div>
-              <h3 className="text-2xl md:text-3xl font-display text-cream mb-2">Chef Antoine Mbala</h3>
-              <p className="text-cream/70 text-sm">Three Michelin-starred experience, bringing the flavors of Congo to the world stage.</p>
+              <div className="text-gold-500 text-sm tracking-wider uppercase mb-2">{t('restaurant.executiveChef')}</div>
+              <h3 className="text-2xl md:text-3xl font-display text-cream mb-2">{t('restaurant.chefName')}</h3>
+              <p className="text-cream/70 text-sm">{t('restaurant.chefDesc')}</p>
             </div>
           </div>
 
           <div className="flex flex-col justify-center">
             <h3 className="text-2xl md:text-3xl font-display text-cream mb-6">
-              Three Distinct Dining Experiences
+              {t('restaurant.threeDining')}
             </h3>
             <div className="space-y-6">
               {[
                 {
-                  name: 'Le Jardin',
-                  desc: 'French-African fusion in an intimate garden setting',
-                  time: '7:00 AM - 11:00 PM',
+                  name: t('restaurant.leJardin'),
+                  desc: t('restaurant.leJardinDesc'),
+                  time: t('restaurant.leJardinTime'),
                 },
                 {
-                  name: 'The Terrace',
-                  desc: 'All-day dining with panoramic city views',
-                  time: '6:00 AM - 12:00 AM',
+                  name: t('restaurant.terrace'),
+                  desc: t('restaurant.terraceDesc'),
+                  time: t('restaurant.terraceTime'),
                 },
                 {
-                  name: 'Private Dining',
-                  desc: 'Exclusive chef\'s table experience for up to 12 guests',
-                  time: 'By Reservation',
+                  name: t('restaurant.privateDining'),
+                  desc: t('restaurant.privateDiningDesc'),
+                  time: t('restaurant.privateDiningTime'),
                 },
               ].map((venue, i) => (
                 <motion.div
@@ -92,10 +100,9 @@ export function RestaurantSection() {
         {/* Menu Section */}
         <div>
           <h3 className="text-2xl md:text-3xl font-display text-cream text-center mb-8">
-            Our Menu
+            {t('restaurant.menu')}
           </h3>
 
-          {/* Category Tabs */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
             {restaurantMenu.map((category) => (
               <button
@@ -107,12 +114,11 @@ export function RestaurantSection() {
                     : 'bg-white/5 text-cream/70 hover:bg-white/10 border border-white/10'
                 }`}
               >
-                {category.name}
+                {getCatName(category)}
               </button>
             ))}
           </div>
 
-          {/* Menu Items */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
@@ -139,14 +145,14 @@ export function RestaurantSection() {
                       <div className="absolute bottom-0 left-0 right-0 p-5">
                         <div className="flex items-start justify-between mb-2">
                           <h4 className="text-lg font-display text-cream group-hover:text-gold-500 transition-colors">
-                            {item.name}
+                            {getItemName(item)}
                           </h4>
                           <span className="text-lg font-display text-gold-500 ml-4">
                             ${item.price}
                           </span>
                         </div>
                         <p className="text-sm text-cream/60 mb-3">
-                          {item.description}
+                          {getItemDesc(item)}
                         </p>
                         {item.dietary.length > 0 && (
                           <div className="flex gap-2">
@@ -155,7 +161,7 @@ export function RestaurantSection() {
                                 key={tag}
                                 className="px-2 py-0.5 text-[10px] rounded-full bg-gold-500/10 text-gold-500 border border-gold-500/20"
                               >
-                                {tag === 'VG' ? 'Vegetarian' : tag === 'GF' ? 'Gluten Free' : tag}
+                                {tag === 'VG' ? t('restaurant.vegetarian') : tag === 'GF' ? t('restaurant.glutenFree') : tag}
                               </span>
                             ))}
                           </div>
@@ -168,10 +174,9 @@ export function RestaurantSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Reservation CTA */}
           <div className="text-center mt-12">
             <Button size="lg">
-              Make a Reservation
+              {t('restaurant.reservations')}
             </Button>
           </div>
         </div>

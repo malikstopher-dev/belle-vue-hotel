@@ -188,27 +188,77 @@ export interface Dictionary {
   restaurant: {
     title: string;
     subtitle: string;
+    badge: string;
     menu: string;
     reservations: string;
+    executiveChef: string;
+    chefName: string;
+    chefDesc: string;
+    threeDining: string;
+    leJardin: string;
+    leJardinDesc: string;
+    leJardinTime: string;
+    terrace: string;
+    terraceDesc: string;
+    terraceTime: string;
+    privateDining: string;
+    privateDiningDesc: string;
+    privateDiningTime: string;
+    vegetarian: string;
+    glutenFree: string;
   };
   spa: {
     title: string;
     subtitle: string;
+    badge: string;
     treatments: string;
     bookTreatment: string;
+    viewAllTreatments: string;
+    sanctuary: string;
+    sanctuaryDesc: string;
+    feature1: string;
+    feature2: string;
+    feature3: string;
+    feature4: string;
+    feature5: string;
+    min: string;
+    book: string;
   };
   pool: {
     title: string;
     subtitle: string;
+    badge: string;
+    open: string;
+    floatingDesc: string;
   };
   gym: {
     title: string;
     subtitle: string;
+    badge: string;
+    elevateTitle: string;
+    elevateDesc: string;
+    open247: string;
+    meetTrainers: string;
+    technogym: string;
+    technogymDesc: string;
+    yogaStudio: string;
+    yogaDesc: string;
+    personalTraining: string;
+    trainingDesc: string;
+    steamSauna: string;
+    steamDesc: string;
   };
   conference: {
     title: string;
     subtitle: string;
+    badge: string;
     bookVenue: string;
+    boardToGalas: string;
+    boardDesc: string;
+    planEvent: string;
+    upToGuests: string;
+    needHelp: string;
+    contactEvents: string;
   };
   gallery: {
     title: string;
@@ -217,7 +267,52 @@ export interface Dictionary {
   experiences: {
     title: string;
     subtitle: string;
+    badge: string;
     book: string;
+    bookNow: string;
+    customDesc: string;
+    contactConcierge: string;
+    from: string;
+  };
+  booking: {
+    title: string;
+    subtitle: string;
+    badge: string;
+    checkIn: string;
+    checkOut: string;
+    adults: string;
+    children: string;
+    roomType: string;
+    specialRequests: string;
+    book: string;
+    availability: string;
+    selectRoom: string;
+    bestRate: string;
+    freeCancellation: string;
+    secureBooking: string;
+    bestPrice: string;
+    freeCancel: string;
+    support247: string;
+    specialPlaceholder: string;
+  };
+  testimonials: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    reviews: string;
+  };
+  location: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    nearby: string;
+    transportation: string;
+    airportDesc: string;
+    leisure: string;
+    culture: string;
+    shopping: string;
+    nature: string;
+    sports: string;
   };
   contact: {
     title: string;
@@ -242,18 +337,6 @@ export interface Dictionary {
     emailPlaceholder: string;
     subjectPlaceholder: string;
     messagePlaceholder: string;
-  };
-  booking: {
-    title: string;
-    subtitle: string;
-    checkIn: string;
-    checkOut: string;
-    adults: string;
-    children: string;
-    roomType: string;
-    specialRequests: string;
-    book: string;
-    availability: string;
   };
   footer: {
     rights: string;
