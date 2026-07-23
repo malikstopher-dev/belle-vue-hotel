@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
+import { LocaleProvider } from '@/context/LocaleContext';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CustomCursor } from '@/components/animations/CustomCursor';
@@ -48,27 +49,29 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="relative">
-      <Preloader />
-      <CustomCursor />
-      <ScrollProgress />
-      <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <RoomsSection />
-      <RestaurantSection />
-      <SpaSection />
-      <PoolSection />
-      <GymSection />
-      <ConferenceSection />
-      <GallerySection />
-      <TestimonialsSection />
-      <ExperiencesSection />
-      <BookingSection />
-      <ContactSection />
-      <LocationSection />
-      <Footer />
-      <BackToTop />
-    </main>
+    <LocaleProvider initialLocale="en">
+      <main className="relative">
+        <Preloader />
+        <CustomCursor />
+        <ScrollProgress />
+        <Navbar />
+        <HeroSection />
+        <AboutSection />
+        <RoomsSection />
+        <RestaurantSection />
+        <SpaSection />
+        <PoolSection />
+        <GymSection />
+        <ConferenceSection />
+        <GallerySection />
+        <TestimonialsSection />
+        <ExperiencesSection />
+        <BookingSection />
+        <ContactSection />
+        <LocationSection />
+        <Footer />
+        <BackToTop />
+      </main>
+    </LocaleProvider>
   );
 }

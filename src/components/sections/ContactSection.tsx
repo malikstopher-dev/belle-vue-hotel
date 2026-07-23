@@ -6,10 +6,12 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { siteConfig } from '@/config/site';
+import { useLocale } from '@/context/LocaleContext';
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const { t, locale } = useLocale();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,9 +34,9 @@ export function ContactSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          badge="Get in Touch"
-          title="Contact Us"
-          subtitle="We're Here for You"
+          badge={locale === 'fr' ? 'Contactez-nous' : 'Get in Touch'}
+          title={t('contact.title')}
+          subtitle={t('contact.subtitle')}
         />
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">

@@ -22,7 +22,7 @@ import { BookingSection } from '@/components/sections/BookingSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { LocationSection } from '@/components/sections/LocationSection';
 
-export default function FrenchPage() {
+export default function LocalePage() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -48,7 +48,7 @@ export default function FrenchPage() {
     <main className="relative">
       <Preloader />
       <ScrollProgress />
-      <Navbar locale="fr" />
+      <Navbar />
       <HeroSection />
       <AboutSection />
       <RoomsSection />

@@ -7,11 +7,13 @@ import { Button } from '@/components/ui/Button';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { rooms } from '@/config/data';
 import { formatCurrency } from '@/lib/utils';
+import { useLocale } from '@/context/LocaleContext';
 
 export function RoomsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const [activeRoom, setActiveRoom] = useState(0);
+  const { t, locale } = useLocale();
 
   return (
     <section id="rooms" ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-black overflow-hidden">
@@ -23,9 +25,9 @@ export function RoomsSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          badge="Accommodations"
-          title="Rooms & Suites"
-          subtitle="Private Sanctuaries of Refined Luxury"
+          badge={locale === 'fr' ? 'Hébergements' : 'Accommodations'}
+          title={t('rooms.title')}
+          subtitle={t('rooms.subtitle')}
         />
 
         {/* Room Tabs */}

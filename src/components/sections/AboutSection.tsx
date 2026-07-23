@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { GlassCard } from '@/components/ui/GlassCard';
+import { useLocale } from '@/context/LocaleContext';
 
 const stats = [
   { value: '2020', label: 'Year Established' },
@@ -42,6 +43,7 @@ const features = [
 export function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const { t, locale } = useLocale();
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -60,9 +62,9 @@ export function AboutSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          badge="Our Story"
-          title="A Legacy of Elegance"
-          subtitle="The Art of Luxury Hospitality"
+          badge={locale === 'fr' ? 'Notre Histoire' : 'Our Story'}
+          title={t('about.title')}
+          subtitle={t('about.subtitle')}
         />
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">

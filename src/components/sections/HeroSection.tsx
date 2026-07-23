@@ -3,10 +3,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { useLocale } from '@/context/LocaleContext';
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const { t, locale } = useLocale();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -21,6 +23,8 @@ export function HeroSection() {
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  const titleParts = t('hero.title').split(' ');
 
   return (
     <section
@@ -52,7 +56,7 @@ export function HeroSection() {
             className="mb-6 md:mb-8"
           >
             <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-black/40 backdrop-blur-sm text-white text-xs md:text-sm tracking-[0.2em] uppercase">
-              Five Star Luxury Hotel
+              {locale === 'fr' ? 'Hôtel de Luxe 5 Étoiles' : 'Five Star Luxury Hotel'}
             </span>
           </motion.div>
 
@@ -63,8 +67,14 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.4 }}
             className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-medium text-white leading-[0.95] tracking-tight mb-6"
           >
-            <span className="block">Where Luxury</span>
-            <span className="block mt-2">Meets Serenity</span>
+            {titleParts.length > 3 ? (
+              <>
+                <span className="block">{titleParts.slice(0, 3).join(' ')}</span>
+                <span className="block mt-2">{titleParts.slice(3).join(' ')}</span>
+              </>
+            ) : (
+              <span className="block">{t('hero.title')}</span>
+            )}
           </motion.h1>
 
           {/* Subtitle */}
@@ -74,7 +84,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="max-w-2xl mx-auto text-base md:text-lg text-white/80 font-light leading-relaxed mb-10"
           >
-            An intimate sanctuary in the heart of Kinshasa, where every moment is crafted with elegance and every detail whispers luxury.
+            {t('hero.subtitle')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -85,10 +95,10 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button size="lg" className="min-w-[200px]">
-              Explore Our World
+              {t('hero.cta')}
             </Button>
             <Button variant="luxury" size="lg" className="min-w-[200px]">
-              Book Your Stay
+              {t('hero.ctaSecondary')}
             </Button>
           </motion.div>
 
@@ -100,9 +110,9 @@ export function HeroSection() {
             className="mt-12 md:mt-16 grid grid-cols-3 gap-6 max-w-md mx-auto"
           >
             {[
-              { value: '5 Star', label: 'Rating' },
-              { value: '120+', label: 'Rooms' },
-              { value: '24/7', label: 'Service' },
+              { value: '5 Star', label: locale === 'fr' ? 'Classement' : 'Rating' },
+              { value: '120+', label: locale === 'fr' ? 'Chambres' : 'Rooms' },
+              { value: '24/7', label: locale === 'fr' ? 'Service' : 'Service' },
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <div className="text-xl md:text-2xl font-display text-white mb-1">
@@ -129,7 +139,9 @@ export function HeroSection() {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] text-white/50 tracking-widest uppercase">Scroll</span>
+          <span className="text-[10px] text-white/50 tracking-widest uppercase">
+            {locale === 'fr' ? 'Défiler' : 'Scroll'}
+          </span>
           <div className="w-[1px] h-8 bg-white/20" />
         </motion.div>
       </motion.div>
