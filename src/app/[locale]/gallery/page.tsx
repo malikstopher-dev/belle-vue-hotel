@@ -703,7 +703,7 @@ export default function GalleryPage() {
                 Where luxury meets serenity. An intimate sanctuary in the heart of Kinshasa, crafting unforgettable moments since 2020.
               </p>
               <div className="flex gap-3">
-                {[siteConfig.social.instagram, siteConfig.social.facebook, siteConfig.social.twitter, siteConfig.social.whatsapp].map((href, i) => (
+                {[siteConfig.social.instagram, siteConfig.social.facebook, siteConfig.social.tiktok, siteConfig.social.whatsapp].map((href, i) => (
                   <a
                     key={i}
                     href={href}

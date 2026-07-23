@@ -33,7 +33,6 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: '@belleviehotel',
   },
   robots: {
     index: true,
@@ -110,7 +109,7 @@ export default function RootLayout({
               sameAs: [
                 siteConfig.social.facebook,
                 siteConfig.social.instagram,
-                siteConfig.social.twitter,
+                siteConfig.social.tiktok,
               ],
             }),
           }}

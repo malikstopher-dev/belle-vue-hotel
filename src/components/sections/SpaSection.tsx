@@ -51,49 +51,22 @@ export function SpaSection() {
 
         {/* Spa Feature */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 mb-16 md:mb-20">
-          {/* 3D Stone Visual */}
+          {/* Hero Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1 }}
-            className="relative aspect-square max-w-sm md:max-w-lg mx-auto"
+            className="relative aspect-[4/3] lg:aspect-square max-w-lg mx-auto overflow-hidden rounded-2xl"
           >
             <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-              style={{ backgroundImage: 'url(/images/lobby/lobby-1.jpg)' }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: 'url(/images/spa/spa-hero.jpg)' }}
             />
-            {/* Floating Stones */}
-            {[
-              { x: '30%', y: '20%', size: 120, delay: 0 },
-              { x: '60%', y: '35%', size: 80, delay: 0.5 },
-              { x: '45%', y: '65%', size: 100, delay: 1 },
-              { x: '25%', y: '75%', size: 60, delay: 1.5 },
-              { x: '70%', y: '70%', size: 70, delay: 2 },
-            ].map((stone, i) => (
-              <motion.div
-                key={i}
-                className="absolute rounded-full bg-gradient-to-br from-luxury-gray to-luxury-dark border border-white/10 shadow-luxury"
-                style={{
-                  left: stone.x,
-                  top: stone.y,
-                  width: stone.size,
-                  height: stone.size,
-                }}
-                animate={{
-                  y: [0, -15, 0],
-                  rotate: [0, 5, -5, 0],
-                }}
-                transition={{
-                  duration: 4 + i,
-                  repeat: Infinity,
-                  delay: stone.delay,
-                  ease: 'easeInOut',
-                }}
-              />
-            ))}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             
-            {/* Center Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gold-500/20 rounded-full blur-3xl" />
+            {/* Decorative floating orbs */}
+            <div className="absolute top-8 right-8 w-16 h-16 bg-gold-500/20 rounded-full blur-xl" />
+            <div className="absolute bottom-12 left-8 w-24 h-24 bg-gold-500/10 rounded-full blur-2xl" />
           </motion.div>
 
           {/* Content */}
@@ -147,7 +120,10 @@ export function SpaSection() {
                 padding="none"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-luxury-charcoal via-luxury-gray to-luxury-dark transition-transform duration-700 group-hover:scale-110" />
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${treatment.image})` }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   
                   <div className="absolute top-4 right-4 glass-card px-3 py-1">
