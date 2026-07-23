@@ -45,7 +45,7 @@ export function HeroSection() {
       {/* Content */}
       <motion.div
         style={{ opacity, y: y2 }}
-        className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20"
+        className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 md:pt-36"
       >
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}

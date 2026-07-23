@@ -62,13 +62,13 @@ export function Navbar() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href={`/${locale}`} className="flex items-center gap-2 group">
+            <Link href={`/${locale}`} className="flex items-center gap-1 group">
               <img
                 src="/images/logo.svg"
                 alt="Hotel Belle Vie"
                 className="h-8 md:h-10 w-auto"
               />
-              <div className="block">
+              <div className="block -ml-1">
                 <div className="font-display text-xs md:text-sm text-cream tracking-wider leading-tight">
                   {siteConfig.name}
                 </div>
