@@ -1,50 +1,48 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { createServerClient } from '@supabase/ssr';
+import { NextResponse, type NextRequest } from 'next/server';
 
-const locales = ['en', 'fr'];
-const defaultLocale = 'en';
+export async function middleware(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({ request });
 
-function getLocaleFromPathname(pathname: string): string | null {
-  const firstSegment = pathname.split('/')[1];
-  if (locales.includes(firstSegment)) return firstSegment;
-  return null;
-}
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          );
+          supabaseResponse = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { data: { user } } = await supabase.auth.getUser();
 
-  // Skip internal paths
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/api') ||
-    pathname.startsWith('/images') ||
-    pathname.includes('.') // static files
-  ) {
-    return NextResponse.next();
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    if (!user && request.nextUrl.pathname !== '/admin/login') {
+      const url = request.nextUrl.clone();
+      url.pathname = '/admin/login';
+      return NextResponse.redirect(url);
+    }
+    if (user && request.nextUrl.pathname === '/admin/login') {
+      const url = request.nextUrl.clone();
+      url.pathname = '/admin';
+      return NextResponse.redirect(url);
+    }
   }
 
-  const localeInPath = getLocaleFromPathname(pathname);
-
-  // If no locale in URL, redirect to default locale
-  if (!localeInPath) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${defaultLocale}${pathname}`;
-    return NextResponse.redirect(url);
-  }
-
-  // Set the locale cookie for client-side access
-  const response = NextResponse.next();
-  response.cookies.set('locale', localeInPath, {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'lax',
-  });
-
-  // Set Content-Language header
-  response.headers.set('Content-Language', localeInPath);
-
-  return response;
+  return supabaseResponse;
 }
 
 export const config = {
-  matcher: ['/((?!_next|api|images|favicon.ico|robots.txt|sitemap.xml|apple-touch-icon.png).*)'],
+  matcher: ['/admin/:path*'],
 };
