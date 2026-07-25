@@ -1,102 +1,191 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
 import { SectionTitle } from '@/components/ui/SectionTitle';
-import { Button } from '@/components/ui/Button';
-
-const galleryCategories = ['All', 'Rooms', 'Restaurant', 'Spa', 'Pool', 'Events'];
-
-const galleryItems = [
-  { id: 1, category: 'All', aspect: 'aspect-[4/3]', image: '/images/lobby/lobby-1.jpg' },
-  { id: 2, category: 'Rooms', aspect: 'aspect-[3/4]', image: '/images/rooms/standard-1.jpg' },
-  { id: 3, category: 'Restaurant', aspect: 'aspect-square', image: '/images/restaurant/dining-1.jpg' },
-  { id: 4, category: 'Spa', aspect: 'aspect-[4/3]', image: '/images/rooms/deluxe-1.jpg' },
-  { id: 5, category: 'Pool', aspect: 'aspect-[16/9]', image: '/images/pool/pool-1.jpg' },
-  { id: 6, category: 'Events', aspect: 'aspect-[4/3]', image: '/images/lobby/lobby-1.jpg' },
-  { id: 7, category: 'Rooms', aspect: 'aspect-square', image: '/images/rooms/executive-1.jpg' },
-  { id: 8, category: 'Restaurant', aspect: 'aspect-[3/4]', image: '/images/restaurant/terrace-1.jpg' },
-  { id: 9, category: 'Spa', aspect: 'aspect-[4/3]', image: '/images/rooms/junior-suite-1.jpg' },
-  { id: 10, category: 'Pool', aspect: 'aspect-[16/9]', image: '/images/pool/pool-1.jpg' },
-  { id: 11, category: 'Events', aspect: 'aspect-[4/3]', image: '/images/restaurant/terrace-1.jpg' },
-  { id: 12, category: 'All', aspect: 'aspect-square', image: '/images/rooms/deluxe-2.jpg' },
-];
 
 export function GallerySection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const imgContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const filteredItems = activeCategory === 'All'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeCategory);
+  // List of all FB_IMG images (unnamed pictures downloaded)
+  const fbImages = [
+    '/images/FB_IMG_1784914464872.jpg',
+    '/images/FB_IMG_1784914468658.jpg',
+    '/images/FB_IMG_1784914472528.jpg',
+    '/images/FB_IMG_1784914476411.jpg',
+    '/images/FB_IMG_1784914480264.jpg',
+    '/images/FB_IMG_1784914484107.jpg',
+    '/images/FB_IMG_1784914487987.jpg',
+    '/images/FB_IMG_1784914491843.jpg',
+    '/images/FB_IMG_1784914495722.jpg',
+    '/images/FB_IMG_1784914499585.jpg',
+    '/images/FB_IMG_1784914503452.jpg',
+    '/images/FB_IMG_1784914507306.jpg',
+    '/images/FB_IMG_1784914511187.jpg',
+    '/images/FB_IMG_1784914515052.jpg',
+    '/images/FB_IMG_1784914518913.jpg',
+    '/images/FB_IMG_1784914522778.jpg',
+    '/images/FB_IMG_1784914526638.jpg',
+    '/images/FB_IMG_1784914530502.jpg',
+    '/images/FB_IMG_1784914534362.jpg',
+    '/images/FB_IMG_1784914538224.jpg',
+    '/images/FB_IMG_1784914542088.jpg',
+    '/images/FB_IMG_1784914545952.jpg',
+    '/images/FB_IMG_1784914549816.jpg',
+    '/images/FB_IMG_1784914553680.jpg',
+    '/images/FB_IMG_1784914557544.jpg',
+    '/images/FB_IMG_1784914561408.jpg',
+    '/images/FB_IMG_1784914565272.jpg',
+    '/images/FB_IMG_1784914569136.jpg',
+    '/images/FB_IMG_1784914573000.jpg',
+    '/images/FB_IMG_1784914576864.jpg',
+    '/images/FB_IMG_1784914580728.jpg',
+    '/images/FB_IMG_1784914584592.jpg',
+    '/images/FB_IMG_1784914588456.jpg',
+    '/images/FB_IMG_1784914592320.jpg',
+    '/images/FB_IMG_1784914596184.jpg',
+    '/images/FB_IMG_1784914600048.jpg',
+    '/images/FB_IMG_1784914603912.jpg',
+    '/images/FB_IMG_1784914607776.jpg',
+    '/images/FB_IMG_1784914611640.jpg',
+    '/images/FB_IMG_1784914615504.jpg',
+    '/images/FB_IMG_1784914619368.jpg',
+    '/images/FB_IMG_1784914623232.jpg',
+    '/images/FB_IMG_1784914627096.jpg',
+    '/images/FB_IMG_1784914630960.jpg',
+    '/images/FB_IMG_1784914634824.jpg',
+    '/images/FB_IMG_1784914638688.jpg',
+    '/images/FB_IMG_1784914642552.jpg',
+    '/images/FB_IMG_1784914646416.jpg',
+    '/images/FB_IMG_1784914650280.jpg',
+    '/images/FB_IMG_1784914654144.jpg',
+    '/images/FB_IMG_1784914658008.jpg',
+    '/images/FB_IMG_1784914661872.jpg',
+    '/images/FB_IMG_1784914665736.jpg',
+    '/images/FB_IMG_1784914669600.jpg',
+    '/images/FB_IMG_1784914673464.jpg',
+    '/images/FB_IMG_1784914677328.jpg',
+    '/images/FB_IMG_1784914681192.jpg',
+    '/images/FB_IMG_1784914685056.jpg',
+    '/images/FB_IMG_1784914688920.jpg',
+    '/images/FB_IMG_1784914692784.jpg',
+    '/images/FB_IMG_1784914696648.jpg',
+    '/images/FB_IMG_1784914700512.jpg',
+    '/images/FB_IMG_1784914704376.jpg',
+    '/images/FB_IMG_1784914708240.jpg',
+    '/images/FB_IMG_1784914712104.jpg',
+    '/images/FB_IMG_1784914715968.jpg',
+    '/images/FB_IMG_1784914719832.jpg',
+    '/images/FB_IMG_1784914723696.jpg',
+    '/images/FB_IMG_1784914727560.jpg',
+    '/images/FB_IMG_1784914731424.jpg',
+    '/images/FB_IMG_17849147352835288.jpg',
+    '/images/FB_IMG_1784914839152.jpg',
+    '/images/FB_IMG_1784914843016.jpg',
+    '/images/FB_IMG_1784914846880.jpg',
+    '/images/FB_IMG_1784914850744.jpg',
+    '/images/FB_IMG_1784914854608.jpg',
+    '/images/FB_IMG_1784914858472.jpg',
+    '/images/FB_IMG_1784914862336.jpg',
+    '/images/FB_IMG_1784914866200.jpg',
+    '/images/FB_IMG_1784914870064.jpg',
+    '/images/FB_IMG_1784914873928.jpg',
+    '/images/FB_IMG_1784914877792.jpg',
+    '/images/FB_IMG_1784914881656.jpg',
+    '/images/FB_IMG_1784914885520.jpg',
+    '/images/FB_IMG_1784914889384.jpg',
+    '/images/FB_IMG_1784914893248.jpg',
+    '/images/FB_IMG_1784914897112.jpg',
+    '/images/FB_IMG_1784914900976.jpg'
+  ];
+
+  // Auto-advance every 3 seconds
+  useEffect(() => {
+    if (fbImages.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % fbImages.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [fbImages.length]);
+
+  // Handle image load to start fade-in
+  const handleImageLoad = (index: number) => {
+    if (imgContainerRefs.current[index]) {
+      const imgElement = imgContainerRefs.current[index].querySelector('img');
+      if (imgElement) {
+        imgElement.style.opacity = '1';
+        imgElement.style.transition = 'opacity 1s ease-in-out';
+      }
+    }
+  };
 
   return (
-    <section id="gallery" ref={sectionRef} className="relative py-24 md:py-32 bg-luxury-black overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="relative bg-luxury-black overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <SectionTitle
           badge="Visual Stories"
           title="Gallery"
           subtitle="Visual Stories of Elegance"
         />
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-          {galleryCategories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm transition-all duration-500 ${
-                activeCategory === category
-                  ? 'bg-gold-500 text-black'
-                  : 'bg-white/5 text-cream/70 hover:bg-white/10 border border-white/10'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        {/* Slideshow Container */}
+        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl">
+          {/* Current Image */}
+          <div
+            ref={(ref) => {
+              if (ref) imgContainerRefs.current[currentIndex] = ref;
+            }}
+            className="absolute inset-0 z-10 flex items-center justify-center"
+          >
+            <img
+              src={fbImages[currentIndex]}
+              alt={`Gallery slide ${currentIndex + 1}`}
+              className="object-cover w-full h-full opacity-0"
+              onLoad={() => {
+                setTimeout(() => {
+                  setIsVisible(true);
+                }, 50);
+              }}
+            />
+          </div>
 
-        {/* Masonry Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
-        >
-          <AnimatePresence>
-            {filteredItems.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4 }}
-                className={`${item.aspect} relative rounded-xl overflow-hidden cursor-pointer group`}
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${item.image})` }}
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500" />
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                    </svg>
-                  </div>
-                </div>
-              </motion.div>
+          {/* Next Image (for crossfade) */}
+          <div
+            ref={(ref) => {
+              if (ref) {
+                const nextIndex = (currentIndex + 1) % fbImages.length;
+                imgContainerRefs.current[nextIndex] = ref;
+              }
+            }}
+            className="absolute inset-0 z-20 flex items-center justify-center opacity-0"
+          >
+            <img
+              src={fbImages[(currentIndex + 1) % fbImages.length]}
+              alt={`Gallery slide ${(currentIndex + 2) % fbImages.length + 1}`}
+              className="object-cover w-full h-full opacity-0"
+            />
+          </div>
+
+          {/* Progress Bar */}
+          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gold-500 to-gold-300" />
+
+          {/* Navigation Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {fbImages.map((_, index) => (
+              <div
+                key={index}
+                className={`w-3 h-3 rounded-full ${
+                  index === currentIndex
+                    ? 'bg-white/70'
+                    : 'bg-white/30 hover:bg-white/50 transition-colors'
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              />
             ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* View All Button */}
-        <div className="text-center mt-12">
-          <Button variant="luxury" size="lg">
-            View Full Collection
-          </Button>
+          </div>
         </div>
       </div>
     </section>
