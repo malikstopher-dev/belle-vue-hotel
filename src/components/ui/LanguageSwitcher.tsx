@@ -13,7 +13,7 @@ export function LanguageSwitcher() {
   const handleSwitch = () => {
     const path = window.location.pathname;
     const segments = path.split('/');
-    if (['en', 'fr'].includes(segments[1])) {
+    if (['en', 'fr', 'pt'].includes(segments[1])) {
       segments[1] = nextLocale;
     } else {
       segments.splice(1, 0, nextLocale);

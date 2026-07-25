@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { CustomCursor } from '@/components/animations/CustomCursor';
 import { Preloader } from '@/components/animations/Preloader';
 import { ScrollProgress } from '@/components/animations/ScrollProgress';
 import { BackToTop } from '@/components/animations/BackToTop';
@@ -47,6 +48,7 @@ export default function LocalePage() {
   return (
     <main className="relative">
       <Preloader />
+      <CustomCursor />
       <ScrollProgress />
       <Navbar />
       <HeroSection />
