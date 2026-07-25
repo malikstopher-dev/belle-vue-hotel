@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import { TextField } from '@/components/admin/TextField';
 import { SaveButton } from '@/components/admin/SaveButton';
 import { useToast } from '@/components/admin/Toast';
@@ -15,8 +15,8 @@ interface RoomData {
 
 const empty: RoomData = { id: '', name: '', name_fr: '', name_pt: '', description: '', description_fr: '', description_pt: '', price: 0, size: 0, max_guests: 2, bed_type: '', amenities: '', images: '', featured: false, slug: '' };
 
-export default function RoomEditor({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = React.use(params);
+export default function RoomEditor() {
+  const { id } = useParams<{ id: string }>();
   const isNew = id === 'new';
   const [room, setRoom] = useState<RoomData>(empty);
   const [loading, setLoading] = useState(false);

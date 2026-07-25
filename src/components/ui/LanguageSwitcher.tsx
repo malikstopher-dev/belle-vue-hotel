@@ -2,13 +2,30 @@
 
 import React from 'react';
 import { useLocale } from '@/context/LocaleContext';
+import type { Locale } from '@/i18n/dictionaries';
+
+const labels: Record<Locale, string> = {
+  en: 'English',
+  fr: 'Français',
+  pt: 'Português',
+};
+
+const flags: Record<Locale, string> = {
+  en: '🇬🇧',
+  fr: '🇫🇷',
+  pt: '🇵🇹',
+};
+
+const localeOrder: Locale[] = ['en', 'fr', 'pt'];
 
 export function LanguageSwitcher() {
   const { locale } = useLocale();
 
-  const nextLocale = locale === 'fr' ? 'en' : 'fr';
-  const nextLabel = locale === 'fr' ? 'English' : 'Français';
-  const nextFlag = locale === 'fr' ? '🇬🇧' : '🇫🇷';
+  const currentIndex = localeOrder.indexOf(locale);
+  const nextIndex = (currentIndex + 1) % localeOrder.length;
+  const nextLocale = localeOrder[nextIndex];
+  const nextLabel = labels[nextLocale];
+  const nextFlag = flags[nextLocale];
 
   const handleSwitch = () => {
     const path = window.location.pathname;

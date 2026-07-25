@@ -28,7 +28,7 @@ export function LocaleProvider({
       // Update URL to reflect new locale
       const path = window.location.pathname;
       const segments = path.split('/');
-      if (['en', 'fr'].includes(segments[1])) {
+      if (['en', 'fr', 'pt'].includes(segments[1])) {
         segments[1] = newLocale;
       } else {
         segments.splice(1, 0, newLocale);
