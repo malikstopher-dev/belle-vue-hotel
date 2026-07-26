@@ -17,6 +17,11 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [supabase] = useState(() => typeof window !== 'undefined' ? createClient() : null);
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user);
       setLoading(false);
