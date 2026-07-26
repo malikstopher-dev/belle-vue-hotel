@@ -33,7 +33,9 @@ export function CmsProvider({ children, initialLocale = 'en' }: { children: Reac
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const supabase = createClient();
+    if (!supabase) return;
     supabase
       .from('site_content')
       .select('key, value')
