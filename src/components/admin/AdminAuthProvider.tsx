@@ -14,7 +14,7 @@ const AdminAuthContext = createContext<AdminAuthContextType>({ user: null, loadi
 export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
+  const [supabase] = useState(() => typeof window !== 'undefined' ? createClient() : null);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
