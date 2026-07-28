@@ -221,13 +221,13 @@ function RestaurantStory() {
             <motion.div style={{ y: imgY }} className="relative aspect-[4/5] rounded-2xl overflow-hidden">
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: 'url(/images/restaurant/dining-1.jpg)' }}
+                style={{ backgroundImage: 'url(/images/restaurant/chef-mbala.jpg)' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <div className="flex items-center gap-3 text-gold-500 text-sm tracking-wider uppercase">
                   <Star className="w-4 h-4" />
-                  <span>Fine Dining Since 2020</span>
+                  <span>Chef Antoine Mbala</span>
                 </div>
               </div>
             </motion.div>

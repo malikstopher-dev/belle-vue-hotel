@@ -37,7 +37,7 @@ export function ConferenceSection() {
         >
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: 'url(/images/lobby/lobby-1.jpg)' }}
+            style={{ backgroundImage: 'url(/images/conference/board-meeting.jpg)' }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           

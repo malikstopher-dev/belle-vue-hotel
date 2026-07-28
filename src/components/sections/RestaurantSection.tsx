@@ -47,7 +47,7 @@ export function RestaurantSection() {
           <div className="relative aspect-[4/3] lg:aspect-[3/4] rounded-2xl overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: 'url(/images/restaurant/dining-1.jpg)' }}
+              style={{ backgroundImage: 'url(/images/restaurant/chef-mbala.jpg)' }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
